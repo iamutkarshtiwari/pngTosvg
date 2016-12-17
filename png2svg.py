@@ -8,6 +8,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink"
 width="240px" height="240px" viewBox="0 0 240 240">"""
 
 endSvgTag = """</svg>"""
+os.mkdir('your_SVGs_here')
 for files in os.listdir("."):
     if files.endswith(".png"):
         pngFile = open(files, 'rb')
@@ -15,6 +16,6 @@ for files in os.listdir("."):
         base64String = '<image xlink:href="data:image/png;base64,{0}" width="240" height="240" x="0" y="0" />'.format(
             base64data)
 
-        f = open(os.path.splitext(files)[0] + ".svg", 'w')
+        f = open(os.getcwd()+ "/your_SVGs_here/" +os.path.splitext(files)[0] + ".svg", 'w')
         f.write(startSvgTag + base64String + endSvgTag)
         print 'Converted ' + files + ' to ' + os.path.splitext(files)[0] + ".svg"
